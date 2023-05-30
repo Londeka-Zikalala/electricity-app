@@ -1,10 +1,10 @@
 const topupElement = document.querySelector('.topup');
 const BuyBtnElement = document.querySelector('.topupNow');
-const topupAdvanceElement = document.querySelector('.topupAdvance');
 const unitsAvailableElement = document.querySelector('.unitsAvailable');
-const unitsBoughtElement = document.querySelector('.totalUnits');
-const amountSpentElement = document.querySelector('.totalAmount');
+const totalUnitsBoughtElement = document.querySelector('.totalUnits');
+const totalAmountSpentElement = document.querySelector('.totalAmount');
 const advanceTakenElement = document.querySelector('.advanceTaken');
+const totalAmountSpentAdvanceElement = document.querySelector('.totalAmountSpent');
 const usageElement = document.querySelector('.usage');
 const useNowBtnElement = document.querySelector('.useNow');
 
@@ -26,25 +26,27 @@ function setLocalStorage(){
 /*This function updates the values when the amount is not null*/
 
 function buyNow() {
-    const amount = topupElement.querySelector('input[name="buyElectricity"]:checked').value;
+    const amount = document.querySelector('input[name="buyElectricity"]:checked').value;
     if (amount) {
       electricity.topUpElectricity(amount);
       unitsAvailableElement.innerHTML = electricity.getUnitsAvailable();
-      unitsBoughtElement.innerHTML = electricity.totalUnitsBought();
-      amountSpentElement.innerHTML = electricity.totalAmountSpent();
+      totalUnitsBoughtElement.innerHTML = electricity.totalUnitsBought();
+      totalAmountSpentElement.innerHTML = electricity.totalAmountSpent();
+      totalAmountSpentAdvanceElement.innerHTML = electricity.totalAmountSpent();
       advanceTakenElement.innerHTML = electricity.advanceTaken();
       setLocalStorage();
     }
   }
 
   function useNow() {
-    const checkedUseBtn = usageElement.querySelector('input[name="useElectricity"]:checked')
+    const checkedUseBtn = document.querySelector('input[name="useElectricity"]:checked')
   let appliance = checkedUseBtn.value
     if (appliance) {
       const unitsAvailable = electricity.useAppliance(appliance);
       unitsAvailableElement.innerHTML = unitsAvailable;
-      unitsBoughtElement.innerHTML = electricity.totalUnitsBought();
-      amountSpentElement.innerHTML = electricity.totalAmountSpent();
+      totalUnitsBoughtElement.innerHTML = electricity.totalUnitsBought();
+      totalAmountSpentElement.innerHTML = electricity.totalAmountSpent();
+      totalAmountSpentAdvanceElement.innerHTML = electricity.totalAmountSpent();
       advanceTakenElement.innerHTML = electricity.advanceTaken();
       setLocalStorage();
     }
@@ -55,8 +57,8 @@ function buyNow() {
 const storedUsage = localStorage.getItem('electricityUsage');
 if (storedUsage ){
   let usageData = JSON.parse(storedUsage);
-  unitsBoughtElement.innerHTML = usageData.totalUnitsBought || '0.00';
-  amountSpentElement.innerHTML = usageData.totalAmountSpent || '0.00';
+  totalUnitsBoughtElement.innerHTML = usageData.totalUnitsBought || '0.00';
+  totalAmountSpentElement.innerHTML = usageData.totalAmountSpent || '0.00';
 } 
 // DOM events here 
 BuyBtnElement.addEventListener('click', buyNow)
