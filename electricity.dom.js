@@ -9,8 +9,6 @@ const usageElement = document.querySelector('.usage');
 const useNowBtnElement = document.querySelector('.useNow');
 
 
-
-
 // Factory Function instance 
 const electricity =  Electricity();
 /* initialise local storage*/
