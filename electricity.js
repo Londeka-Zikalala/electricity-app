@@ -52,25 +52,25 @@ Then adds the value to the total amount if the advance is already taken, no unit
     * other wise return false and do nothing.
     */
     function useAppliance(appliance) {
-        if(unitsAvailable >= 0){
-            if(appliance === 'Stove'){
-                unitsAvailable -= 10;
-              } else if(appliance === 'Kettle'){
-                unitsAvailable -= 5
-              } else if(appliance === 'TV'){
-                unitsAvailable -= 3
+        if (unitsAvailable >= 0) {
+            for (var key in appliances) {
+              if (appliance === key) {
+                unitsAvailable -= appliances[key];
+                break;
               }
-              else if(appliance === 'Fridge'){
-                unitsAvailable -= 13
-              }
+            }
+          }
+          return unitsAvailable;
         }
-     return unitsAvailable
-      }
+                
+                
+             
+       
 /*This function returns the total advance taken */
     function advanceTaken() {
         if(!advance){
-            advanceAmount = 30}else{
-                advanceAmount = 0
+            advanceAmount === 30}else{
+                advanceAmount === 0
             }
         return advanceAmount.toFixed(2)
     }

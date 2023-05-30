@@ -24,8 +24,13 @@ function setLocalStorage(){
 /*This function updates the values when the amount is not null*/
 
 function buyNow() {
-    const amount = document.querySelector('input[name="buyElectricity"]:checked').value;
-    if (amount) {
+    const amount = topupElement.value.trim();
+  if (amount !== '') {
+    if (amount === 'advance') {
+      electricity.topUpElectricity('advance');
+    } else {
+      electricity.topUpElectricity(Number(amount));
+    }
       electricity.topUpElectricity(amount);
       unitsAvailableElement.innerHTML = electricity.getUnitsAvailable();
       totalUnitsBoughtElement.innerHTML = electricity.totalUnitsBought();
