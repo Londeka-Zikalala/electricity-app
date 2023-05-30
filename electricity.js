@@ -62,6 +62,10 @@ Then adds the value to the total amount if the advance is already taken, no unit
       }
 /*This function returns the total advance taken */
     function advanceTaken() {
+        if(!advance){
+            advanceAmount === 30}else{
+                advanceAmount === 0
+            }
         return advanceAmount.toFixed(2)
     }
 
